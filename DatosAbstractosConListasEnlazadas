@@ -1,0 +1,77 @@
+// Definición de la interfaz Nodo
+interface Nodo {
+    fun obtenerInformacion(): String
+}
+
+// Clase que implementa la interfaz Nodo para la raíz del árbol
+class NodoRaiz : Nodo {
+    override fun obtenerInformacion(): String {
+        return "Este es el nodo raíz del árbol."
+    }
+}
+
+// Clase que implementa la interfaz Nodo para una planta en el árbol
+class NodoPlanta : Nodo {
+    override fun obtenerInformacion(): String {
+        return "Este es un nodo de planta en el árbol."
+    }
+}
+
+// Clase que implementa la interfaz Nodo para una hoja en el árbol
+class NodoHoja : Nodo {
+    override fun obtenerInformacion(): String {
+        return "Este es un nodo de hoja en el árbol."
+    }
+}
+
+// Clase que representa un nodo de la lista enlazada
+class NodoLista(val valor: Nodo) {
+    var siguiente: NodoLista? = null
+}
+
+// Clase que representa la lista enlazada
+class ListaEnlazada {
+    private var cabeza: NodoLista? = null
+
+    // Función para agregar un nodo a la lista enlazada
+    fun agregarNodo(nodo: Nodo) {
+        // Crear un nuevo nodo de lista con el nodo pasado como argumento.
+        val nuevoNodo = NodoLista(nodo)
+        // Si la cabeza de la lista es nula, asignar el nuevo nodo como la cabeza.
+        if (cabeza == null) {
+            cabeza = nuevoNodo
+        } else {
+            // Si la cabeza no es nula, encontrar el último nodo en la lista y agregar el nuevo nodo al final.
+            var actual = cabeza
+            while (actual?.siguiente != null) {
+                actual = actual.siguiente
+            }
+            actual?.siguiente = nuevoNodo
+        }
+    }
+
+    // Función para mostrar la lista enlazada
+    fun mostrarLista() {
+        var actual = cabeza
+        while (actual != null) {
+            // Llamar a la función obtenerInformacion() del nodo y mostrar la información.
+            println(actual.valor.obtenerInformacion())
+            actual = actual.siguiente
+        }
+    }
+}
+
+// Función principal (main) donde se crea una lista enlazada, se agregan nodos y se muestra la lista.
+fun main() {
+    // Creación de una instancia de la clase ListaEnlazada.
+    val lista = ListaEnlazada()
+
+    // Creación de instancias de las clases NodoRaiz, NodoPlanta y NodoHoja, que implementan la interfaz Nodo.
+    // Luego, se agregan estos nodos a la lista enlazada.
+    lista.agregarNodo(NodoRaiz())
+    lista.agregarNodo(NodoPlanta())
+    lista.agregarNodo(NodoHoja())
+
+    // Mostrar la lista enlazada.
+    lista.mostrarLista()
+}
