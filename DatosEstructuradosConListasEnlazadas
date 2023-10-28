@@ -1,0 +1,53 @@
+// Definición de una clase de datos llamada Persona con propiedades nombre y edad.
+data class Persona(val nombre: String, val edad: Int)
+
+// Definición de la clase Nodo que almacena una persona y una referencia al siguiente nodo.
+class Nodo(val persona: Persona, var siguiente: Nodo? = null)
+
+// Definición de la clase ListaEnlazada.
+class ListaEnlazada {
+    // Declaración de una variable privada cabeza que representa el nodo principal de la lista enlazada.
+    private var cabeza: Nodo? = null
+
+    // Función para agregar una persona a la lista enlazada.
+    fun agregarPersona(persona: Persona) {
+        // Creación de un nuevo nodo con la persona pasada como argumento.
+        val nuevoNodo = Nodo(persona)
+        // Establecimiento del nuevo nodo como el siguiente nodo después de la cabeza.
+        nuevoNodo.siguiente = cabeza
+        // Actualización de la cabeza para apuntar al nuevo nodo.
+        cabeza = nuevoNodo
+    }
+
+    // Función para imprimir las personas almacenadas en la lista enlazada.
+    fun imprimirPersonas() {
+        // Inicialización de una variable actual que comienza desde la cabeza de la lista.
+        var actual = cabeza
+        // Iteración a través de la lista mientras el nodo actual no sea nulo.
+        while (actual != null) {
+            // Obteniendo la persona del nodo actual.
+            val persona = actual.persona
+            // Imprimiendo el nombre y la edad de la persona.
+            println("Nombre: ${persona.nombre}, Edad: ${persona.edad} años")
+            // Moviendo al siguiente nodo en la lista.
+            actual = actual.siguiente
+        }
+    }
+}
+
+// Función principal (main) donde se crea una lista enlazada, agrega dos personas y las imprime.
+fun main() {
+    // Creación de una instancia de la clase ListaEnlazada.
+    val lista = ListaEnlazada()
+
+    // Creación de dos instancias de la clase Persona.
+    val persona1 = Persona("Juan", 30)
+    val persona2 = Persona("María", 25)
+
+    // Agregar las dos personas a la lista enlazada.
+    lista.agregarPersona(persona1)
+    lista.agregarPersona(persona2)
+
+    // Imprimir las personas en la lista.
+    lista.imprimirPersonas()
+}
