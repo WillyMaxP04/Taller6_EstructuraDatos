@@ -1,0 +1,23 @@
+// Declaración de la función principal (main).
+fun main() {
+    // Declaración de una lista mutable llamada listaEnlazada que puede contener cualquier tipo de dato (Any).
+    val listaEnlazada = mutableListOf<Any>()
+
+    // Declaración de variables de diferentes tipos de datos y asignación de valores.
+    val entero: Int = 42
+    val flotante: Float = 3.14f
+    val caracter: Char = 'A'
+    val booleano: Boolean = true
+
+    // Agregar los valores de las variables a la listaEnlazada.
+    listaEnlazada.add(entero)
+    listaEnlazada.add(flotante)
+    listaEnlazada.add(caracter)
+    listaEnlazada.add(booleano)
+
+    // Bucle for que itera a través de la listaEnlazada.
+    for (item in listaEnlazada) {
+        // Imprime cada elemento de la listaEnlazada, utilizando la interpolación de cadenas para mostrar el valor.
+        println("Valor: $item")
+    }
+}
